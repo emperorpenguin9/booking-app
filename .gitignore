@@ -20,6 +20,8 @@ dist
 # misc
 .env
 .env.e2e
+/backend/.env
+/backend/.env.e2e
 .DS_Store
 .env.local
 .env.development.local
