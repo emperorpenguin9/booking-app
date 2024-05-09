@@ -22,6 +22,7 @@ dist
 .env.e2e
 /backend/.env
 /backend/.env.e2e
+/frontend/.env
 .DS_Store
 .env.local
 .env.development.local
