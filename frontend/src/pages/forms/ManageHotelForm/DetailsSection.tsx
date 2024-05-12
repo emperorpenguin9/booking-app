@@ -78,8 +78,10 @@ const DetailsSection = () => {
           <option value="" className="text-sm font-bold">
             select as Rating
           </option>
-          {[1, 2, 3, 4, 5].map((num) => (
-            <option value={num}>{num}</option>
+          {[1, 2, 3, 4, 5].map((num, key) => (
+            <option value={num} key={key}>
+              {num}
+            </option>
           ))}
         </select>
         {errors.starRating && (
