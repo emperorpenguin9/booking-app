@@ -2,6 +2,8 @@ import { useMutation, useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import * as apiClient from "../api-client";
 import ManageHotelForm from "./forms/ManageHotelForm/ManageHotelForm";
+import { useAppContext } from "../contexts/AppContext";
+
 const EditHotel = () => {
   const { hotelId } = useParams();
   const { data: hotel } = useQuery(
@@ -11,10 +13,14 @@ const EditHotel = () => {
       enabled: !!hotelId,
     }
   );
-
+  const { showToast } = useAppContext();
   const { mutate, isLoading } = useMutation(apiClient.updateMyHotelById, {
-    onSuccess: () => {},
-    onError: () => {},
+    onSuccess: () => {
+      showToast({ message: "hotel Saved!", type: "SUCCESS" });
+    },
+    onError: () => {
+      showToast({ message: "Error saving Hotel", type: "ERROR" });
+    },
   });
 
   const handleSave = (hotelFormData: FormData) => {
@@ -26,3 +32,6 @@ const EditHotel = () => {
 };
 
 export default EditHotel;
+function showToast(arg0: { message: string; type: string }) {
+  throw new Error("Function not implemented.");
+}
