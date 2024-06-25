@@ -1,4 +1,4 @@
-import { test, expect } from "@playwrite/test";
+import { test, expect } from "@playwright/test";
 
 const UI_URL = "http://localhost:5173/";
 
@@ -25,5 +25,16 @@ test("Should show hotel search results", async ({ page }) => {
   await page.getByRole("button", { name: "Search" }).click();
 
   await expect(page.getByText("Hotels found in Dublin")).toBeVisible();
-  await expect(page.getByText("Dublin Getaways")).toBeVisible();
+  await expect(page.getByText("North Hotel")).toBeVisible();
+});
+
+test("should show hotel detail", async ({ page }) => {
+  await page.goto(UI_URL);
+
+  await page.getByPlaceholder("Where are you going?").fill("Dublin");
+  await page.getByRole("button", { name: "Search" }).click();
+
+  await page.getByText("Dublin Getaways").click();
+  await expect(page).toHaveURL(/detail/);
+  await expect(page.getByRole("button", { name: "Book now" })).toBeVisible();
 });
